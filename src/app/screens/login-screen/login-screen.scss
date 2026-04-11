@@ -1,0 +1,27 @@
+.login-wrapper {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+
+  .login-card {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 20px;
+  }
+
+  .brand-logo {
+    mat-icon {
+      font-size: 4rem;
+      width: 4rem;
+      height: 4rem;
+    }
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+
+  button {
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    border-radius: 10px;
+  }
+}

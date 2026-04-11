@@ -1,0 +1,17 @@
+.table {
+  tbody tr {
+    transition: all 0.2s ease;
+    &:hover {
+      background-color: #f1f5f9;
+    }
+  }
+}
+
+.smaller {
+  font-size: 0.75rem;
+}
+
+button[mat-stroked-button] {
+  border-radius: 8px;
+  font-weight: 500;
+}

@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand navbar-light bg-white px-4 border-bottom shadow-sm">
+  <div class="container-fluid">
+
+    <div class="d-none d-md-flex align-items-center">
+      <span class="text-secondary fw-medium me-2">Hoy es</span>
+      <span class="badge bg-light text-dark border py-2 px-3">
+        <mat-icon class="inline-icon me-1">calendar_today</mat-icon>
+        {{ fechaActual | date:'fullDate' }}
+      </span>
+    </div>
+
+    <ul class="navbar-nav ms-auto align-items-center">
+
+      <li class="nav-item me-3">
+        <button mat-icon-button color="primary" matTooltip="Notificaciones">
+          <mat-icon matBadge="3" matBadgeColor="warn">notifications</mat-icon>
+        </button>
+      </li>
+
+      <div class="vr me-3" style="height: 30px;"></div>
+
+      <li class="nav-item d-flex align-items-center">
+        <div class="text-end me-2 d-none d-sm-block">
+          <div class="fw-bold small mb-0">{{ nombreUsuario }}</div>
+          <div class="text-muted" style="font-size: 0.7rem;">Administrador</div>
+        </div>
+
+        <button mat-icon-button [matMenuTriggerFor]="userMenu" class="profile-btn shadow-sm">
+          <img src="https://ui-avatars.com/api/?name=Alexs+IT&background=4f46e5&color=fff"
+               class="rounded-circle" width="35" alt="User">
+        </button>
+
+        <mat-menu #userMenu="matMenu" xPosition="before" class="mt-2">
+          <button mat-menu-item routerLink="/profile-screen">
+            <mat-icon>person</mat-icon> Mi Perfil
+          </button>
+          <button mat-menu-item>
+            <mat-icon>settings</mat-icon> Ajustes
+          </button>
+          <mat-divider></mat-divider>
+          <button mat-menu-item routerLink="/login-screen" color="warn">
+            <mat-icon color="warn">logout</mat-icon>
+            <span class="text-danger">Cerrar Sesión</span>
+          </button>
+        </mat-menu>
+      </li>
+    </ul>
+
+  </div>
+</nav>

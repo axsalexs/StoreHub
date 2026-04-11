@@ -1,0 +1,27 @@
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  background: #f1f5f9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  mat-icon {
+    font-size: 80px;
+    height: 80px;
+    width: 80px;
+    color: #4f46e5;
+  }
+}
+
+.small-icon {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+
+.bg-primary-subtle {
+  background-color: #eef2ff;
+  border: 1px solid #c7d2fe;
+}

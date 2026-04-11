@@ -1,0 +1,19 @@
+.table-hover tbody tr:hover {
+  background-color: #f8fafc;
+  cursor: default;
+}
+
+.small-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.badge {
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.card {
+  overflow: hidden;
+}

@@ -1,0 +1,63 @@
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+
+      <div class="d-flex align-items-center mb-4">
+        <button mat-icon-button routerLink="/clients-list" class="me-2">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <h2 class="fw-bold mb-0">Registro de Cliente</h2>
+      </div>
+
+      <div class="card border-0 shadow-sm p-4 rounded-4">
+        <form [formGroup]="clientForm" (ngSubmit)="guardar()">
+
+          <div class="row">
+            <div class="col-12 mb-3">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Nombre Completo</mat-label>
+                <input matInput formControlName="nombre" placeholder="Ej. Juan Pérez">
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-error *ngIf="clientForm.get('nombre')?.invalid">El nombre es obligatorio</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Teléfono (10 dígitos)</mat-label>
+                <input matInput formControlName="telefono" placeholder="2221234567" maxlength="10">
+                <mat-icon matSuffix>phone</mat-icon>
+                <mat-error *ngIf="clientForm.get('telefono')?.invalid">Ingresa 10 dígitos numéricos</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Correo Electrónico</mat-label>
+                <input matInput formControlName="email" type="email" placeholder="cliente@correo.com">
+                <mat-icon matSuffix>email</mat-icon>
+                <mat-error *ngIf="clientForm.get('email')?.invalid">Formato de correo no válido</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="col-12 mb-4">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Dirección Física (Opcional)</mat-label>
+                <textarea matInput formControlName="direccion" rows="2"></textarea>
+                <mat-icon matSuffix>location_on</mat-icon>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3 justify-content-end border-top pt-4">
+            <button mat-button type="button" routerLink="/clients-list">CANCELAR</button>
+            <button mat-flat-button color="primary" type="submit" [disabled]="clientForm.invalid" class="px-4">
+              <mat-icon class="me-2">save</mat-icon> GUARDAR CLIENTE
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

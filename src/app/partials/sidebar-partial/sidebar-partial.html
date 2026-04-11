@@ -1,0 +1,60 @@
+<div class="sidebar-header p-4">
+  <h3 class="text-white fw-bold mb-0"><mat-icon class="me-2">hub</mat-icon>StoreHub</h3>
+
+</div>
+
+<div class="sidebar-menu px-3">
+  <div class="menu-label text-muted small fw-bold mb-2 ps-2">PRINCIPAL</div>
+
+  <a routerLink="/dashboard-screen" routerLinkActive="active-link" class="nav-item">
+    <mat-icon>dashboard</mat-icon> Dashboard
+  </a>
+
+
+  <a routerLink="/sales-pos-screen" routerLinkActive="active-link" class="nav-item">
+    <mat-icon>point_of_sale</mat-icon> Punto de Venta
+  </a>
+
+
+  <a routerLink="/sales-history-screen" routerLinkActive="active-link" class="nav-item">
+    <mat-icon>history</mat-icon> Historial de Ventas
+  </a>
+
+  <div class="menu-label text-muted small fw-bold mt-4 mb-2 ps-2">GESTIÓN</div>
+
+  <a routerLink="/products-list-screen" routerLinkActive="active-link" class="nav-item">
+    <mat-icon>inventory_2</mat-icon> Productos
+  </a>
+
+  <a routerLink="/categories-list-screen" routerLinkActive="active-link" class="nav-item">
+    <mat-icon>category</mat-icon> Categorías
+  </a>
+
+  <a routerLink="/clients-list-screen" routerLinkActive="active-link" class="nav-item">
+    <mat-icon>people</mat-icon> Clientes
+  </a>
+
+  @if (rolUsuario === 'admin') {
+    <div class="menu-label text-muted small fw-bold mt-4 mb-2 ps-2">ADMINISTRACIÓN</div>
+
+    <a routerLink="/inventory-movements-screen" routerLinkActive="active-link" class="nav-item">
+      <mat-icon>swap_vert</mat-icon> Ajustes de Stock
+    </a>
+
+    <!--
+    <a routerLink="/users-list" routerLinkActive="active-link" class="nav-item">
+      <mat-icon>manage_accounts</mat-icon> Cuentas de Usuario
+    </a>
+    -->
+
+    <a routerLink="/reports-screen" routerLinkActive="active-link" class="nav-item">
+      <mat-icon>bar_chart</mat-icon> Reportes y Ventas
+    </a>
+  }
+</div>
+
+<div class="sidebar-footer p-3 mt-auto">
+  <button mat-button class="text-white-50 w-100 text-start" routerLink="/login-screen">
+    <mat-icon class="me-2">logout</mat-icon> Cerrar Sesión
+  </button>
+</div>

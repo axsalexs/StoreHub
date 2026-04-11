@@ -1,0 +1,73 @@
+<div class="container py-5">
+  <div class="row g-4">
+
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm text-center p-4 rounded-4">
+        <div class="profile-avatar mb-3 mx-auto">
+          <mat-icon>account_circle</mat-icon>
+        </div>
+        <h4 class="fw-bold mb-0">{{ usuario.nombre }}</h4>
+        <span class="badge bg-primary-subtle text-primary mb-3">{{ usuario.rol }}</span>
+
+        <div class="text-start mt-4 pt-3 border-top">
+          <div class="d-flex align-items-center mb-2">
+            <mat-icon class="me-2 text-muted small-icon">email</mat-icon>
+            <span class="small text-muted">{{ usuario.correo }}</span>
+          </div>
+          <div class="d-flex align-items-center">
+            <mat-icon class="me-2 text-muted small-icon">calendar_today</mat-icon>
+            <span class="small text-muted">Miembro desde: {{ usuario.fechaIngreso | date:'longDate' }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm p-4 rounded-4">
+        <h5 class="fw-bold mb-4">Configuración de la Cuenta</h5>
+
+        <form [formGroup]="profileForm" (ngSubmit)="guardarCambios()">
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100 mb-2">
+                <mat-label>Nombre Completo</mat-label>
+                <input matInput formControlName="nombre">
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100 mb-2">
+                <mat-label>Correo Electrónico</mat-label>
+                <input matInput formControlName="correo" type="email">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <hr class="my-4 opacity-10">
+          <h6 class="fw-bold mb-3">Seguridad</h6>
+
+          <div class="row">
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100 mb-2">
+                <mat-label>Contraseña Actual</mat-label>
+                <input matInput type="password" formControlName="passwordActual">
+              </mat-form-field>
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100 mb-2">
+                <mat-label>Nueva Contraseña</mat-label>
+                <input matInput type="password" formControlName="nuevaPassword">
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="text-end mt-4">
+            <button mat-flat-button color="primary" class="px-5 py-4" [disabled]="profileForm.invalid">
+              GUARDAR CAMBIOS
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</div>

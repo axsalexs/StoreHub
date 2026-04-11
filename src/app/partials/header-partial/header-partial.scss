@@ -1,0 +1,30 @@
+.navbar {
+  height: 70px;
+  background-color: #ffffff;
+}
+
+.inline-icon {
+  font-size: 1.1rem;
+  width: 1.1rem;
+  height: 1.1rem;
+  vertical-align: middle;
+}
+
+.profile-btn {
+  border: 2px solid #f1f5f9;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: #4f46e5;
+  }
+}
+
+// Estilo para las notificaciones (Badge)
+::ng-deep .mat-badge-content {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.vr {
+  border-left: 1px solid #e2e8f0;
+}

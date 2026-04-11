@@ -1,0 +1,33 @@
+.landing-wrapper {
+  .hero-bg {
+    background-color: #fcfdfe;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+
+  .text-primary {
+    color: #4f46e5 !important; // Índigo profesional
+  }
+
+  .btn-huge {
+    padding: 1.5rem 3rem !important;
+    font-size: 1.2rem !important;
+    font-weight: 600;
+    border-radius: 12px;
+  }
+
+  .hero-visual {
+    background: rgba(79, 70, 229, 0.05);
+    border-radius: 50%;
+    padding: 4rem;
+    display: inline-block;
+
+    .hero-icon {
+      font-size: 12rem;
+      width: 12rem;
+      height: 12rem;
+      opacity: 0.8;
+    }
+  }
+}

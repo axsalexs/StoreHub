@@ -1,0 +1,18 @@
+.card {
+  border-radius: 1.25rem;
+  background-color: #ffffff;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.fw-bold {
+  color: #1e293b;
+}
+
+button[mat-flat-button] {
+  padding: 1.2rem 2rem !important;
+  border-radius: 10px;
+  font-weight: 600;
+}

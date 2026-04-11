@@ -1,0 +1,20 @@
+.registro-wrapper {
+  background: #f0f2f5;
+  padding: 2rem 0;
+
+  .registro-card {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+  }
+
+  .header-icon {
+    font-size: 3.5rem;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  mat-form-field {
+    width: 100%;
+  }
+}

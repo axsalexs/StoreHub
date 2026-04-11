@@ -1,0 +1,61 @@
+/* Estilo para los contenedores del sidebar */
+.sidebar-container {
+  background-color: #1e293b; // Azul oscuro profundo
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ETIQUETAS DE SECCIÓN (Principal, Gestión, etc.) */
+.menu-label {
+  color: #94a3b8 !important; // Un gris claro que resalta sobre el oscuro
+  font-size: 0.7rem;
+  letter-spacing: 0.05rem;
+  text-transform: uppercase;
+  padding-left: 10px;
+  opacity: 0.8;
+}
+
+/* ITEMS DE NAVEGACIÓN */
+.nav-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  color: #cbd5e1; // Color de texto base
+  text-decoration: none;
+  border-radius: 10px;
+  margin-bottom: 4px;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+
+  mat-icon {
+    margin-right: 12px;
+    font-size: 20px;
+    width: 20px;
+    height: 20px;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1); // Efecto de cristal sutil
+    color: #fbbf24; // Un amarillo ámbar para el hover (más profesional)
+  }
+}
+
+/* LINK ACTIVO */
+.active-link {
+  background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+  color: white !important;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+}
+
+/* FOOTER / CERRAR SESIÓN */
+.sidebar-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  button {
+    &:hover {
+      color: #ef4444 !important; // Rojo al pasar el mouse por cerrar sesión
+    }
+  }
+}

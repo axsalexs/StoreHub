@@ -1,0 +1,18 @@
+.card {
+  position: relative;
+  overflow: hidden;
+
+  .card-icon {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    font-size: 40px;
+    height: 40px;
+    width: 40px;
+    opacity: 0.2;
+  }
+}
+
+.bg-primary {
+  background: linear-gradient(135deg, #4f46e5 0%, #3b82f6 100%) !important;
+}

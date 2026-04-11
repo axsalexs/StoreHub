@@ -1,0 +1,48 @@
+<div class="login-wrapper d-flex align-items-center justify-content-center min-vh-100">
+  <div class="card login-card border-0 shadow-lg">
+    <div class="card-body p-5">
+
+      <div class="text-center mb-4">
+        <div class="brand-logo mb-3">
+          <mat-icon color="primary">account_circle</mat-icon>
+        </div>
+        <h2 class="fw-bold">Bienvenido</h2>
+        <p class="text-muted">Ingresa tus datos para acceder</p>
+      </div>
+
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <mat-form-field appearance="outline" class="w-100 mb-2">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput formControlName="email" type="email" placeholder="ejemplo@mail.com">
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">Requerido</mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('pattern')">Formato inválido</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w-100 mb-4">
+          <mat-label>Contraseña</mat-label>
+          <input matInput
+                [type]="hidePassword ? 'password' : 'text'"
+                formControlName="password"
+                maxlength="16">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" type="button">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <!--<mat-hint align="end">{{loginForm.get('password')?.value?.length || 0}}/16</mat-hint>-->
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">Requiere Contraseña</mat-error>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">Mínimo 8 caracteres</mat-error>
+        </mat-form-field>
+
+        <button mat-flat-button color="primary" type="submit" class="w-100 py-3">ACCEDER</button>
+      </form>
+
+      <div class="text-center mt-4">
+        <p class="small text-muted">
+          ¿No tienes una cuenta?
+          <a routerLink="/registro-screen" class="text-primary fw-bold text-decoration-none">Regístrate</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
