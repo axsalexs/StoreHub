@@ -12,5 +12,5 @@ $border-color: #e0e0e0;
 // Sobreescribir botones de Angular Material para que sean Naranjas
 .mat-flat-button.mat-primary {
   background-color: $primary-color !important;
-  border-radius: 4px !important; // Bordes menos redondeados para verse más "enterprise"
+  border-radius: 4px !important; 
 }
