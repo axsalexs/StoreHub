@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { SHARED_IMPORTS } from '../../shared/shared.imports';
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-dashboard-screen',
@@ -8,27 +9,48 @@ import { SHARED_IMPORTS } from '../../shared/shared.imports';
   templateUrl: './dashboard-screen.html',
   styleUrl: './dashboard-screen.scss'
 })
-export class DashboardScreenComponent implements OnInit {
+export class DashboardScreenComponent implements OnInit, AfterViewInit {
+  @ViewChild('salesLineChart') salesLineChart!: ElementRef;
 
-  // Simulador de Rol: cámbialo a 'vendedor' para probar la otra vista
-  public rolUsuario: string = 'admin';
-
-  // Datos para el Administrador
-  public adminStats = [
-    { label: 'Ventas Totales', value: '$45,200', icon: 'payments', color: 'bg-primary' },
-    { label: 'Productos', value: '1,250', icon: 'inventory_2', color: 'bg-success' },
-    { label: 'Alertas Stock', value: '8', icon: 'warning', color: 'bg-danger' },
-    { label: 'Vendedores', value: '4', icon: 'badge', color: 'bg-info' }
-  ];
-
-  // Datos para el Vendedor
-  public vendedorStats = [
-    { label: 'Mis Ventas Hoy', value: '$3,150', icon: 'shopping_basket', color: 'bg-success' },
-    { label: 'Tickets Emitidos', value: '14', icon: 'confirmation_number', color: 'bg-primary' },
-    { label: 'Faltantes Stock', value: '2', icon: 'history_edu', color: 'bg-warning' }
+  public stats = [
+    { label: 'Ventas del Día', value: '$12,450.00', icon: 'payments', color: '#f37021' },
+    { label: 'Nuevos Clientes', value: '12', icon: 'person_add', color: '#2d2d2d' },
+    { label: 'Productos en Stock', value: '1,240', icon: 'inventory_2', color: '#2d2d2d' },
+    { label: 'Ticket Promedio', value: '$245.50', icon: 'trending_up', color: '#2d2d2d' }
   ];
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  ngAfterViewInit() {
+    this.initChart();
+  }
+
+  private initChart() {
+    new Chart(this.salesLineChart.nativeElement, {
+      type: 'line',
+      data: {
+        labels: ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00'],
+        datasets: [{
+          label: 'Ventas en Tiempo Real',
+          data: [2100, 4500, 3200, 7800, 5600, 9100, 4200],
+          borderColor: '#f37021',
+          backgroundColor: 'rgba(243, 112, 33, 0.1)',
+          fill: true,
+          tension: 0.4,
+          pointRadius: 5,
+          pointBackgroundColor: '#f37021'
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true, grid: { display: false } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+  }
 }

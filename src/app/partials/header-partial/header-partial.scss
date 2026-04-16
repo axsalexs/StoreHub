@@ -1,6 +1,13 @@
+$primary-color: #f37021;
+$light-navbar: #ffffff;
+$border-light: #e0e0e0;
+$text-dark: #2d2d2d;
+
 .navbar {
   height: 70px;
-  background-color: #ffffff;
+  background-color: $light-navbar !important;
+  border-bottom: 1px solid $border-light !important;
+  border-radius: 0 !important; // Bordes totalmente rectos
 }
 
 .inline-icon {
@@ -10,21 +17,36 @@
   vertical-align: middle;
 }
 
+// Botón circular del perfil (Este sí se queda redondo porque es un avatar)
 .profile-btn {
-  border: 2px solid #f1f5f9;
-  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  padding: 0;
+  width: 40px;
+  height: 40px;
+  transition: all 0.3s ease;
 
   &:hover {
-    border-color: #4f46e5;
+    border-color: $primary-color;
+    box-shadow: 0 0 10px rgba(243, 112, 33, 0.4);
+    transform: scale(1.05);
   }
 }
 
-// Estilo para las notificaciones (Badge)
+// Estilo para las notificaciones
 ::ng-deep .mat-badge-content {
   font-size: 10px;
   font-weight: bold;
 }
 
+// Divisor vertical adaptado a modo claro
 .vr {
-  border-left: 1px solid #e2e8f0;
+  border-left: 1px solid $border-light;
+}
+
+// Etiqueta de la fecha adaptada a fondo claro
+.date-badge {
+  background-color: #f8fafc;
+  border: 1px solid $border-light;
+  color: $text-dark;
+  border-radius: 0 !important; // Bordes totalmente rectos
 }

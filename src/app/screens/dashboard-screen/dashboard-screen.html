@@ -1,94 +1,62 @@
-<div class="container-fluid py-4">
-
+<div class="container-fluid py-4 bg-light-hub">
   <div class="row mb-4">
     <div class="col-12">
-      <h2 class="fw-bold">
-        Panel de {{ rolUsuario === 'admin' ? 'Administración' : 'Ventas' }}
-      </h2>
-      <p class="text-muted">Bienvenido al sistema StoreHub</p>
+      <h2 class="fw-bold text-dark-hub">Panel de Control</h2>
+      <p class="text-muted">Bienvenido de nuevo a StoreHub Backoffice</p>
     </div>
   </div>
 
-  @if (rolUsuario === 'admin') {
-    <div class="row g-4 mb-4">
-      @for (item of adminStats; track item.label) {
-        <div class="col-md-3">
-          <div class="card border-0 shadow-sm p-3">
-            <div class="d-flex align-items-center">
-              <div class="p-3 rounded-3 me-3" [ngClass]="item.color">
-                <mat-icon class="text-white">{{ item.icon }}</mat-icon>
-              </div>
-              <div>
-                <p class="mb-0 text-muted small fw-bold">{{ item.label }}</p>
-                <h4 class="mb-0 fw-bold">{{ item.value }}</h4>
-              </div>
+  <div class="row g-3 mb-4">
+    @for (item of stats; track item.label) {
+      <div class="col-md-3">
+        <div class="card border-0 shadow-sm p-3 hub-card">
+          <div class="d-flex align-items-center justify-content-between mb-2">
+            <span class="small fw-bold text-muted text-uppercase">{{ item.label }}</span>
+            <mat-icon [style.color]="item.color">{{ item.icon }}</mat-icon>
+          </div>
+          <h3 class="fw-bold mb-0">{{ item.value }}</h3>
+        </div>
+      </div>
+    }
+  </div>
+
+  <div class="row g-3">
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm p-4 hub-card h-100">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <h5 class="fw-bold mb-0">Rendimiento de Ventas</h5>
+          <div class="btn-group">
+            <button mat-button class="btn-sm active-tab">Hoy</button>
+            <button mat-button class="btn-sm">Semana</button>
+          </div>
+        </div>
+        <canvas #salesLineChart></canvas>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm p-4 hub-card h-100">
+        <h5 class="fw-bold mb-3">Alertas de Inventario</h5>
+        <div class="list-group list-group-flush">
+          <div class="list-group-item px-0 py-3 border-0 d-flex align-items-center">
+            <div class="alert-indicator bg-danger me-3"></div>
+            <div>
+              <p class="mb-0 fw-bold small">Coca Cola 600ml</p>
+              <small class="text-muted">Quedan 2 unidades</small>
+            </div>
+          </div>
+          <div class="list-group-item px-0 py-3 border-0 d-flex align-items-center">
+            <div class="alert-indicator bg-warning me-3"></div>
+            <div>
+              <p class="mb-0 fw-bold small">Sabritas Sal</p>
+              <small class="text-muted">Quedan 8 unidades</small>
             </div>
           </div>
         </div>
-      }
-    </div>
-
-    <div class="row">
-      <div class="col-md-8">
-        <div class="card border-0 shadow-sm p-4 text-center py-5">
-          <mat-icon class="display-1 text-light mb-3">trending_up</mat-icon>
-          <h5>Gráfica de Rendimiento Global</h5>
-          <p class="text-muted">Vista exclusiva para administradores.</p>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card border-0 shadow-sm p-4 h-100">
-          <h6 class="fw-bold border-bottom pb-2 mb-3">Acciones de Control</h6>
-          <button mat-flat-button color="primary" class="w-100 mb-2" routerLink="/products-list-screen">Ver Inventario</button>
-          <button mat-stroked-button class="w-100" routerLink="/reports">Generar Reporte Mensual</button>
-        </div>
-      </div>
-
-    </div>
-
-    <br>
-    <div class="card p-3 border-0 shadow-sm">
-      <div class="d-flex justify-content-between">
-        <small class="text-muted fw-bold">STOCK CRÍTICO</small>
-        <mat-icon class="text-danger">warning</mat-icon>
-      </div>
-      <h2 class="fw-bold">12</h2>
-      <button mat-button color="warn" class="btn-sm w-100 mt-2" routerLink="/inventory-movements-screen">
-        AJUSTAR AHORA
-      </button>
-    </div>
-  }
-
-  <!-- Vista vendedor-->
-  @else {
-    <div class="row g-4 mb-4">
-      @for (item of vendedorStats; track item.label) {
-        <div class="col-md-4">
-          <div class="card border-0 shadow-sm p-3 border-start border-4" [ngStyle]="{'border-color': 'var(--bs-primary)'}">
-            <div class="d-flex justify-content-between align-items-center">
-              <div>
-                <p class="mb-0 text-muted small fw-bold">{{ item.label }}</p>
-                <h3 class="mb-0 fw-bold">{{ item.value }}</h3>
-              </div>
-              <mat-icon class="text-secondary opacity-50 fs-1">{{ item.icon }}</mat-icon>
-            </div>
-          </div>
-        </div>
-      }
-    </div>
-
-    <div class="row">
-      <div class="col-12">
-        <div class="card border-0 shadow-lg p-5 text-center bg-primary text-white bg-gradient">
-          <mat-icon style="font-size: 5rem; height: 5rem; width: 5rem;">point_of_sale</mat-icon>
-          <h2 class="mt-3">¿Listo para una nueva venta?</h2>
-          <p class="mb-4">Haz clic abajo para abrir el Punto de Venta rápido.</p>
-          <button mat-raised-button color="accent" class="px-5 py-3 fw-bold" routerLink="/sales-pos-screen">
-            ABRIR CAJA / VENDER
-          </button>
-        </div>
+        <button mat-flat-button color="primary" class="w-100 mt-auto" routerLink="/inventory-movements-screen">
+          GESTIONAR STOCK
+        </button>
       </div>
     </div>
-  }
-
+  </div>
 </div>

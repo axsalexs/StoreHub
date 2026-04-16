@@ -22,12 +22,33 @@ export class CategoriesListScreenComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.categoryForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.maxLength(30)]],
+      nombre: ['', [Validators.required, Validators.maxLength(20)]],
       descripcion: ['', [Validators.maxLength(100)]]
     });
   }
 
   ngOnInit(): void {}
+
+  // Limpieza automática: Solo letras, máx 20, sin espacios dobles o al inicio
+  public validarNombre(event: any) {
+    const input = event.target as HTMLInputElement;
+    let valor = input.value;
+
+    valor = valor.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]/g, '');
+
+    if (valor.startsWith(' ')) {
+      valor = valor.trim();
+    }
+
+    valor = valor.replace(/\s{2,}/g, ' ');
+
+    if (valor.length > 20) {
+      valor = valor.substring(0, 20);
+    }
+
+    input.value = valor;
+    this.categoryForm.get('nombre')?.setValue(valor);
+  }
 
   public agregarCategoria() {
     if (this.categoryForm.valid) {

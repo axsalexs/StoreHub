@@ -21,7 +21,6 @@ export class SalesPosScreenComponent implements OnInit {
     { id: 104, nombre: 'Leche Alpura 1L', precio: 27.00, stock: 20, categoria: 'Lácteos' },
     { id: 105, nombre: 'Pepsi 1L', precio: 28.00, stock: 28, categoria: 'Bebidas' },
     { id: 106, nombre: 'Sangria 1L', precio: 32.00, stock: 12, categoria: 'Bebidas' },
-    { id: 107, nombre: 'Mirinda 1L', precio: 25.80, stock: 18, categoria: 'Bebidas' },
     { id: 108, nombre: 'Fanta 1L', precio: 29.89, stock: 14, categoria: 'Bebidas' },
     { id: 109, nombre: 'Doritos 1L', precio: 20.00, stock: 25, categoria: 'Snacks' }
 
