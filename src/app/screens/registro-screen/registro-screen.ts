@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth';
 @Component({
   selector: 'app-registro-screen',
   standalone: true,
@@ -21,8 +21,8 @@ import { AuthService } from '../../services/auth.service';
     MatButtonModule,
     MatIconModule
   ],
-  templateUrl: './registro-screen.component.html',
-  styleUrls: ['./registro-screen.component.scss']
+  templateUrl: './registro-screen.html',
+  styleUrls: ['./registro-screen.scss']
 })
 export class RegistroScreenComponent {
   registroForm: FormGroup;
