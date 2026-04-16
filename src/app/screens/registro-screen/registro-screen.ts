@@ -1,35 +1,74 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { SHARED_IMPORTS } from '../../shared/shared.imports';
-
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from '../../services/auth';
 @Component({
   selector: 'app-registro-screen',
   standalone: true,
-  imports: [...SHARED_IMPORTS],
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule, 
+    RouterModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule
+  ],
   templateUrl: './registro-screen.html',
-  styleUrl: './registro-screen.scss'
+  styleUrls: ['./registro-screen.scss']
 })
 export class RegistroScreenComponent {
-  public registroForm: FormGroup;
-  public hidePassword = true;
-  public roles = [
+  registroForm: FormGroup;
+  hidePassword = true;
+  
+  roles = [
     { value: 'admin', viewValue: 'Administrador' },
-    { value: 'Cajero/vendedor', viewValue: 'Cajero/Vendedor' }
+    { value: 'cajero', viewValue: 'Cajero / Vendedor' }
   ];
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.registroForm = this.fb.group({
-      nombre: ['', [Validators.required, Validators.maxLength(50)]],
-      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]],
-      rol: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(16)]]
+      nombre: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      rol: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(8)]]
     });
   }
 
-  public onRegister(): void {
+  onRegister() {
     if (this.registroForm.valid) {
-      this.router.navigate(['/login-screen']);
+      const formValues = this.registroForm.value;
+
+      const backendData = {
+        username: formValues.email.split('@')[0],
+        first_name: formValues.nombre,
+        email: formValues.email,
+        password: formValues.password,
+        rol: formValues.rol // <- ¡El rol que nos faltaba!
+      };
+
+      this.authService.registrar(backendData).subscribe({
+        next: (respuesta) => {
+          console.log('¡Usuario creado en MySQL!', respuesta);
+          alert('¡Registro exitoso! Ahora inicia sesión.');
+          this.router.navigate(['/login-screen']);
+        },
+        error: (error) => {
+          console.error('Error al registrar:', error);
+          alert('Hubo un error. Puede que el correo o usuario ya existan.');
+        }
+      });
     } else {
       this.registroForm.markAllAsTouched();
     }
