@@ -39,7 +39,7 @@
             <mat-icon style="color: #f37021; font-size: 2.5rem; width: 2.5rem; height: 2.5rem;">hub</mat-icon>
             <h2 class="fw-bold text-white m-0" style="font-size: 2rem;">STORE<span style="color: #f37021">HUB</span></h2>
           </div>
-          <p class="small text-uppercase fw-bold mb-0" style="color: #64748b; letter-spacing: 2px;">New Account</p>
+          <p class="small text-uppercase fw-bold mb-0" style="color: #64748b; letter-spacing: 2px;">Nuevo Usuario</p>
         </div>
 
         <form [formGroup]="registroForm" (ngSubmit)="onRegister()">
@@ -50,6 +50,14 @@
             <mat-icon matSuffix>person</mat-icon>
             <mat-hint align="end">{{registroForm.get('nombre')?.value?.length || 0}}/50</mat-hint>
             <mat-error *ngIf="registroForm.get('nombre')?.hasError('required')">El nombre no puede quedar vacío</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="w-100 mb-2">
+            <mat-label>Apellidos</mat-label>
+            <input matInput formControlName="apellidos" maxlength="50">
+            <mat-icon matSuffix>person_outline</mat-icon>
+            <mat-hint align="end">{{registroForm.get('apellidos')?.value?.length || 0}}/50</mat-hint>
+            <mat-error *ngIf="registroForm.get('apellidos')?.hasError('required')">Los apellidos no pueden quedar vacíos</mat-error>
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="w-100 mb-2">
@@ -83,6 +91,7 @@
           <button mat-flat-button class="w-100 hub-btn" type="submit" [disabled]="registroForm.invalid">
             CREAR CUENTA
           </button>
+          
         </form>
 
         <div class="text-center mt-5 pt-3 border-top-dark">

@@ -12,6 +12,8 @@ import Chart from 'chart.js/auto';
 export class DashboardScreenComponent implements OnInit, AfterViewInit {
   @ViewChild('salesLineChart') salesLineChart!: ElementRef;
 
+  public nombreUsuario: string = 'Usuario';
+
   public stats = [
     { label: 'Ventas del Día', value: '$12,450.00', icon: 'payments', color: '#f37021' },
     { label: 'Nuevos Clientes', value: '12', icon: 'person_add', color: '#2d2d2d' },
@@ -21,7 +23,14 @@ export class DashboardScreenComponent implements OnInit, AfterViewInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // <- 2. BUSCAMOS EL NOMBRE EN LA MEMORIA AL CARGAR LA PANTALLA
+    const usuarioGuardado = localStorage.getItem('username');
+    if (usuarioGuardado) {
+      // Un pequeño truco para poner la primera letra en mayúscula
+      this.nombreUsuario = usuarioGuardado.charAt(0).toUpperCase() + usuarioGuardado.slice(1);
+    }
+  }
 
   ngAfterViewInit() {
     this.initChart();

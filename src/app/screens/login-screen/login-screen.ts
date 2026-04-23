@@ -41,6 +41,8 @@ export class LoginScreenComponent {
           console.log('¡Login exitoso!', respuesta);
           
           this.authService.guardarToken(respuesta.access);
+
+          localStorage.setItem('username', credenciales.username);
           
           this.router.navigate(['/dashboard-screen']);
         },
