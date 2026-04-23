@@ -10,12 +10,17 @@ import { SHARED_IMPORTS } from '../../shared/shared.imports';
 })
 export class HeaderPartialComponent implements OnInit {
   public fechaActual: Date = new Date();
-  public nombreUsuario: string = "Alexs IT"; // Esto después vendrá de un servicio de auth
+  public nombreUsuario: string = "Usuario"; 
 
   constructor() {}
 
   ngOnInit(): void {
-    // Actualizar la fecha cada minuto si es necesario
+    const valorGuardado = localStorage.getItem('username');
+    
+    if (valorGuardado) {
+      this.nombreUsuario = valorGuardado.charAt(0).toUpperCase() + valorGuardado.slice(1);
+    }
+
     setInterval(() => {
       this.fechaActual = new Date();
     }, 60000);
