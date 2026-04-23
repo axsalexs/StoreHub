@@ -40,6 +40,7 @@ export class RegistroScreenComponent {
   ) {
     this.registroForm = this.fb.group({
       nombre: ['', Validators.required],
+      apellidos: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       rol: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]]
@@ -53,6 +54,7 @@ export class RegistroScreenComponent {
       const backendData = {
         username: formValues.email.split('@')[0],
         first_name: formValues.nombre,
+        last_name: formValues.apellidos,
         email: formValues.email,
         password: formValues.password,
         rol: formValues.rol // <- ¡El rol que nos faltaba!
